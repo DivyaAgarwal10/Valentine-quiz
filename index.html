@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Husband 💍❤️</title>
+
+<style>
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #ff5f6d, #ffc371);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.quiz-box {
+    background: #fff;
+    padding: 28px;
+    border-radius: 18px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+h2 {
+    color: #e63946;
+}
+
+p {
+    color: #555;
+    font-size: 14px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: #e63946;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #c1121f;
+    transform: scale(1.02);
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-box">
+    <h2 id="question"></h2>
+    <p id="subtext">Only correct answers allowed 😏</p>
+    <div id="options"></div>
+</div>
+
+<script>
+const quiz = [
+    {
+        q: "Who is the most beautiful woman in your life?",
+        o: ["My wife 😍", "You 💕", "The love of my life ❤️", "All of the above 😉"],
+        correct: 3,
+        funny: "Wrong 😌 Try choosing MORE love ❤️"
+    },
+    {
+        q: "Your favorite place in the world?",
+        o: ["Home 🏠", "Anywhere with you 💕", "Long drives 🚗", "Office 😐"],
+        correct: 1,
+        funny: "Office??? 😑 Think again, husband!"
+    },
+    {
+        q: "What makes a bad day better instantly?",
+        o: ["Food 🍕", "Sleep 😴", "Your smile 😘", "Your hug 🤗"],
+        correct: 2,
+        funny: "Food can wait 😏 Love comes first ❤️"
+    },
+    {
+        q: "Final question 💍 Will you be my Valentine forever?",
+        o: ["Yes ❤️", "Always 💍", "Every year 😍", "I already am 😉"],
+        correct: 3,
+        funny: "Careful 😏 Only ONE answer is wife-approved!"
+    }
+];
+
+let index = 0;
+
+const question = document.getElementById("question");
+const options = document.getElementById("options");
+
+function loadQuestion() {
+    options.innerHTML = "";
+    question.innerText = quiz[index].q;
+
+    quiz[index].o.forEach((option, i) => {
+        const btn = document.createElement("button");
+        btn.innerText = option;
+        btn.onclick = () => checkAnswer(i);
+        options.appendChild(btn);
+    });
+}
+
+function checkAnswer(selected) {
+    if (selected === quiz[index].correct) {
+        index++;
+        if (index < quiz.length) {
+            loadQuestion();
+        } else {
+            question.innerText = "Congratulations 🎉 You’re my Valentine forever 💖💍";
+            options.innerHTML = "<p>Now come give your wife a hug 🤗❤️</p>";
+        }
+    } else {
+        alert(quiz[index].funny);
+    }
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
